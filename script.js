@@ -1,4 +1,5 @@
-const quizData = [{
+const quizData = [
+    {
         question: 'What is the capital of France?',
         options: ['Paris', 'London', 'Berlin', 'Madrid'],
         answer: 'Paris',
@@ -79,21 +80,21 @@ function displayQuestion() {
     const shuffledOptions = [...questionData.options];
     shuffleArray(shuffledOptions);
 
-    for (let i = 0; i < shuffledOptions.length; i++) {
+    shuffledOptions.forEach(optionText => {
         const option = document.createElement('label');
         option.className = 'option';
 
         const radio = document.createElement('input');
         radio.type = 'radio';
         radio.name = 'quiz';
-        radio.value = shuffledOptions[i];
+        radio.value = optionText;
 
-        const optionText = document.createTextNode(shuffledOptions[i]);
+        const optionTextNode = document.createTextNode(optionText);
 
         option.appendChild(radio);
-        option.appendChild(optionText);
+        option.appendChild(optionTextNode);
         optionsElement.appendChild(option);
-    }
+    });
 
     quizContainer.innerHTML = '';
     quizContainer.appendChild(questionElement);
@@ -150,15 +151,15 @@ function showAnswer() {
     showAnswerButton.style.display = 'none';
 
     let incorrectAnswersHtml = '';
-    for (let i = 0; i < incorrectAnswers.length; i++) {
+    incorrectAnswers.forEach(answer => {
         incorrectAnswersHtml += `
             <p>
-                <strong>Question:</strong> ${incorrectAnswers[i].question}<br>
-                <strong>Your Answer:</strong> ${incorrectAnswers[i].incorrectAnswer}<br>
-                <strong>Correct Answer:</strong> ${incorrectAnswers[i].correctAnswer}
+                <strong>Question:</strong> ${answer.question}<br>
+                <strong>Your Answer:</strong> ${answer.incorrectAnswer}<br>
+                <strong>Correct Answer:</strong> ${answer.correctAnswer}
             </p>
         `;
-    }
+    });
 
     resultContainer.innerHTML = `
         <p>You scored ${score} out of ${quizData.length}!</p>
@@ -172,69 +173,3 @@ retryButton.addEventListener('click', retryQuiz);
 showAnswerButton.addEventListener('click', showAnswer);
 
 displayQuestion();
-
-
-
-
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;700&display=swap');
-
-body {
-    font - family: 'Poppins', sans - serif;
-    background: #b9b3a9;
-    display: flex;
-    justify - content: center;
-}
-
-.container {
-    width: 450 px;
-    padding: 20 px;
-    margin - top: 80 px;
-    background - color: #fff;
-    box - shadow: 0 2 px 4 px rgba(0, 0, 0, 0.1);
-    border - radius: 20 px;
-}
-
-h1 {
-    text - align: center;
-}
-
-.question {
-    font - weight: bold;
-    margin - bottom: 10 px;
-}
-
-.options {
-    margin - bottom: 20 px;
-}
-
-.option {
-    display: block;
-    margin - bottom: 10 px;
-}
-
-.button {
-    display: inline - block;
-    padding: 10 px 20 px;
-    background - color: #428bca;
-    color: # fff;
-    border: none;
-    cursor: pointer;
-    font - size: 16 px;
-    border - radius: 4 px;
-    transition: background - color 0.3 s;
-    margin - right: 10 px;
-}
-
-.button: hover {
-        background - color: #3071a9;
-}
-
-.result {
-    text-align: center;
-    margin-top: 20px;
-    font-weight: bold;
-}
-
-.hide {
-    display: none;
-}
