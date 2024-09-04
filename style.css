@@ -5,12 +5,14 @@ body {
     background: #b9b3a9;
     display: flex;
     justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
 }
 
 .container {
     width: 450px;
     padding: 20px;
-    margin-top: 80px;
     background-color: #fff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
     border-radius: 20px;
@@ -60,5 +62,3 @@ h1 {
 .hide {
     display: none;
 }
-
-
